@@ -39,7 +39,7 @@ LICENSING
 
 TODO Add a small text and a link here. Preliminary I would say: it should be a hereditarily free license, 
 preferably GPL V3, or whatever the FSF is recomending for libraries now, i.e., the GPL V3 equivalent of the LGPL. El Erno agrees.
-
+The main decision here is whether, as a library, we allow it to be used to create proprietary works. It is also necessary to find out what the implications are of using the GPL for a library. I, Jergas, lean towards GPL V3 with the Affero clause.
 
 HOW TO
 
