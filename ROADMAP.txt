@@ -1,0 +1,31 @@
+ROADMAP
+=======
+
+
+- Stage 1
+	- Write documentation
+		- README (in progress).
+		- This text (in progress).
+		- License (in progress).
+		- Coding conventions (needs to be reviewed).
+	- Code moebiusLib.Progression() basic methods and (generated) attributes.
+	- Code moebiusLib.Matrix() basic methods and (generated) attributes.
+- Stage 2
+	- Code moebiusLib.Progression() more sophisticaded methods (and attributes?).
+		- Write an __init__() for the class. The init will invoke:
+			- code makeProgression(), which will construct a moebius tone-row,
+				and make it available to the class through  the
+				Progression.complete attribute.
+			- code determineNonLoopingSection(), which will determine if the
+				specific tone-row has a non-looping section. If so, make it
+				available to the class through  the
+				Progression.nonLoopingSection attribute.
+			- code determineLoopingSection(), which will determine the
+				tone-row's looping section, and make it available to
+				the class through  the Progression.loopingSection attribute.
+	- Code moebiusLib.Matrix() more sophisticaded methods (and attributes?).
+- Stage 3
+	- Review the code
+		- Optimize if necessary.
+		- Polish docstrings and comments if necessary.
+	- Write any missing documentation.
