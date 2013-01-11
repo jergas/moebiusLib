@@ -36,7 +36,8 @@ class Progression(object):
 		else:
 			raise RuntimeError('startPitch AND missingPitch must be integers!')
 		# Generate the Classes attributes.
-		self.complete			= self.makeProgression()
+		#self.pithces			= self.processInitialConditions()
+		#self.complete			= self.makeProgression()
 		#self.nonLoopingSection	= 
 		#self.loopingSection	= 
 	

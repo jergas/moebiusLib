@@ -7,12 +7,14 @@ ROADMAP
 		- README (in progress).
 		- This text (in progress).
 		- License (in progress).
-		- Coding conventions (needs to be reviewed).
+		- Coding conventions (done?).
 	- Code moebiusLib.Progression() basic methods and (generated) attributes.
-	- Code moebiusLib.Matrix() basic methods and (generated) attributes.
-- Stage 2
-	- Code moebiusLib.Progression() more sophisticaded methods (and attributes?).
 		- Write an __init__() for the class. The init will invoke:
+			- code processInitialConditions(), which will:
+				- range(0, 12)
+				- rotate until starting pitch is the first element of the list.
+				- remove missingPitch from the list.
+				- record the list in the Progression.pitches attribute.
 			- code makeProgression(), which will construct a moebius tone-row,
 				and make it available to the class through  the
 				Progression.complete attribute.
@@ -23,8 +25,30 @@ ROADMAP
 			- code determineLoopingSection(), which will determine the
 				tone-row's looping section, and make it available to
 				the class through  the Progression.loopingSection attribute.
+	- Code moebiusLib.Matrix() basic methods and (generated) attributes.
+		- Use moebiusLib.Progression() as super-class for Matrix()
+- Stage 2
+	- Code moebiusLib.Progression() more sophisticaded methods
+		(and attributes?).
+		- code methods to generate the tone-row identities: retrograde, inverse
+			and inverse-retrograde.
 	- Code moebiusLib.Matrix() more sophisticaded methods (and attributes?).
 - Stage 3
+	- Review the code
+		- Optimize if necessary.
+		- Polish docstrings and comments if necessary.
+	- Write any missing documentation.
+- Stage 4 (wishlist)
+	- Code moebiusLib.Progression() experimental methods (and attributes?).
+		- add optional arguments to makeProgression() or __init__ in order to
+			experiment with different modulos and/or constants in the iterated
+			function (2x = y).
+		- make experimental methods in order to iterate different formulae?
+		- implement modular systems other than Twelve-tone equal temperament
+			(TET).
+	- Code moebiusLib.Matrix() experimental methods (and attributes?).
+	- Code moebiusLib.Harmnoy() basic methods and (generated) attributes.
+- Stage 5
 	- Review the code
 		- Optimize if necessary.
 		- Polish docstrings and comments if necessary.
