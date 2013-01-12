@@ -5,9 +5,10 @@ ROADMAP
 - Stage 1
 	- Write documentation
 		- README (in progress).
-		- This text (in progress).
+		- This text (done for now. elerno wonders if the roadmap is clear
+						enough?).
 		- License (in progress).
-		- Coding conventions (done?).
+		- Coding conventions (elerno believes it is done).
 	- Code moebiusLib.Progression() basic methods and (generated) attributes.
 		- Write an __init__() for the class. The init will invoke:
 			- code processInitialConditions(), which will:
@@ -25,14 +26,26 @@ ROADMAP
 			- code determineLoopingSection(), which will determine the
 				tone-row's looping section, and make it available to
 				the class through  the Progression.loopingSection attribute.
-	- Code moebiusLib.Matrix() basic methods and (generated) attributes.
-		- Use moebiusLib.Progression() as super-class for Matrix()
 - Stage 2
 	- Code moebiusLib.Progression() more sophisticaded methods
 		(and attributes?).
 		- code methods to generate the tone-row identities: retrograde, inverse
 			and inverse-retrograde.
-	- Code moebiusLib.Matrix() more sophisticaded methods (and attributes?).
+	- Code moebiusLib.Matrix() basic methods and (generated) attributes.
+		- use moebiusLib.Progression() as super-class for Matrix()
+		- Code makeTranspositionMatrix() which will construct a transposition
+			matrix with the original tone-row as first notes for the subsequent
+			transpositions.
+		- Add keyword argument to __init__() so that the
+			originating tone-row can be an identity of Progression.complete.
+		- Code makeInverseMatrix() which will construct a transposition
+			matrix with the inverse tone-row as first notes for the subsequent
+			transpositions.
+			- Add keyword argument to __init__ so that the matrix is generated
+				witn makeInverseMatrix(). Originating Identities should also be
+				possible.
+			- Add methods to identify symetry and inversion axises in the
+				Matrix.
 - Stage 3
 	- Review the code
 		- Optimize if necessary.
@@ -46,7 +59,9 @@ ROADMAP
 		- make experimental methods in order to iterate different formulae?
 		- implement modular systems other than Twelve-tone equal temperament
 			(TET).
-	- Code moebiusLib.Matrix() experimental methods (and attributes?).
+	- Code moebiusLib.Matrix() more methods (and attributes?).
+		- Add methods to retrieve basic statistical data from the generated Matrix
+		(pitch mean, median and mode)
 	- Code moebiusLib.Harmnoy() basic methods and (generated) attributes.
 - Stage 5
 	- Review the code
