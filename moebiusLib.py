@@ -1,10 +1,10 @@
 # -*- coding: UTF-8 -*-
 
-# Classes that generates a "Moebius Progressions" and transposition
-#Matrixes as concieved by composer Ernesto Illescas-Peláez in his
-#Master's thesis "An Organizing Tide of Chaos - Resonances of Chaos
-#Theory in a Composer's Craftsmanship". Coded by Edgar Becerra-Santillán
-#and Ernesto Illescas-Peláez
+# Classes that generate "Moebius Progressions" and transposition
+# matrixes as conceived by composer Ernesto Illescas-Peláez in his
+# Master's thesis "An Organizing Tide of Chaos - Resonances of Chaos
+# Theory in a Composer's Craftsmanship". Coded by Edgar Becerra-Santillán
+# and Ernesto Illescas-Peláez
 
 # Import Python native modules.
 import sys
@@ -36,12 +36,13 @@ class Progression(object):
 		else:
 			raise RuntimeError('startPitch AND missingPitch must be integers!')
 		# Generate the Classes attributes.
-		self.complete			= self.makeProgression()
-		#self.nonLooping Section	= 
+		#self.pithces			= self.processInitialConditions()
+		#self.complete			= self.makeProgression()
+		#self.nonLoopingSection	= 
 		#self.loopingSection	= 
 	
 	
 	def makeProgression(self):
-		""" Constructs a Moebius town-row.
+		""" Constructs a Moebius tone-row.
 		"""
 		pass
