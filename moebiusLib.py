@@ -1,10 +1,11 @@
 # -*- coding: UTF-8 -*-
 
-# Classes that generate "Moebius Progressions" and transposition
+#	Classes that generate "Moebius Progressions" and transposition
 # matrixes as conceived by composer Ernesto Illescas-Peláez in his
 # Master's thesis "An Organizing Tide of Chaos - Resonances of Chaos
-# Theory in a Composer's Craftsmanship". Coded by Edgar Becerra-Santillán
-# and Ernesto Illescas-Peláez
+# Theory in a Composer's Craftsmanship".
+#
+#	Coded by Edgar Becerra-Santillán and Ernesto Illescas-Peláez.
 
 # Import Python native modules.
 import sys
@@ -35,12 +36,32 @@ class Progression(object):
 				raise RuntimeError('startPitch must be >= 0 and <=11!')
 		else:
 			raise RuntimeError('startPitch AND missingPitch must be integers!')
+		# List representing the chromatic scale (C= 0).
+		self.chromaticSet	= [0, 1, 2, 3, 4 , 5, 6 , 7, 8, 9, 10 , 11]
 		# Generate the Classes attributes.
-		#self.pithces			= self.processInitialConditions()
+		self.pitches			= self.processInitialConditions()
 		#self.complete			= self.makeProgression()
 		#self.nonLoopingSection	= 
 		#self.loopingSection	= 
 	
+	
+	def processInitialConditions(self):
+		""" Constructs a range(0, 12) list, rotates it until
+			slef.startingPitch is the first element of the list, removes
+			missingPitch from the list, and records the list as the
+			self.pitches attribute.
+		"""
+		pitches	= self.chromaticSet
+		pitches.remove(self.missingPitch)
+		while pitches[0] != self.startPitch:
+			lastPitch = pitches.pop(0)
+			pitches.append(lastPitch)
+		self.pitches = pitches
+		print """Applied initial conditions
+		startPitch        = {0}
+		missingPitch      = {1}
+		(rotated) pitches = {2}
+				""".format(self.startPitch, self.missingPitch, self.pitches)
 	
 	def makeProgression(self):
 		""" Constructs a Moebius tone-row.
