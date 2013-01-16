@@ -11,7 +11,7 @@
 import sys
 
 class Progression(object):
-	""" Generates a Moebius progression, and associated methods.
+	""" Generates a Moebius progression and related attributes.
 	"""
 	
 	def __init__(self, startPitch, missingPitch):
@@ -37,7 +37,7 @@ class Progression(object):
 		else:
 			raise RuntimeError('startPitch AND missingPitch must be integers!')
 		# List representing the chromatic scale (C= 0).
-		self.chromaticSet	= [0, 1, 2, 3, 4 , 5, 6 , 7, 8, 9, 10 , 11]
+		self.chromaticSet	= (0, 1, 2, 3, 4 , 5, 6 , 7, 8, 9, 10 , 11)
 		# Generate the Classes attributes.
 		self.pitches			= self.processInitialConditions()
 		#self.complete			= self.makeProgression()
@@ -46,21 +46,22 @@ class Progression(object):
 	
 	
 	def processInitialConditions(self):
-		""" Constructs a range(0, 12) list, rotates it until
-			slef.startingPitch is the first element of the list, removes
-			missingPitch from the list, and records the list as the
-			self.pitches attribute.
+		""" Rotates the chromatic set until slef.startingPitch is the
+			first element of the list, removes missingPitch from the
+			list, and records the list as the self.pitches attribute.
 		"""
-		pitches	= self.chromaticSet
+		pitches	= list(self.chromaticSet)
 		pitches.remove(self.missingPitch)
 		while pitches[0] != self.startPitch:
 			lastPitch = pitches.pop(0)
 			pitches.append(lastPitch)
 		self.pitches = pitches
-		print """Applied initial conditions
-		startPitch        = {0}
-		missingPitch      = {1}
-		(rotated) pitches = {2}
+		print """ Applied initial conditions:
+	startPitch        = {0}
+	missingPitch      = {1}
+	
+ self.pitches set to:
+	{2}
 				""".format(self.startPitch, self.missingPitch, self.pitches)
 	
 	def makeProgression(self):
