@@ -11,7 +11,8 @@
 import sys
 
 class Progression(object):
-	""" Generates a Moebius progression and related attributes.
+	""" Generates a Moebius progression and related attributes. Contains
+	methods useful for working with the progression.
 	"""
 	
 	def __init__(self, startPitch, missingPitch):
@@ -39,8 +40,8 @@ class Progression(object):
 		# List representing the chromatic scale (C= 0).
 		self.chromaticSet	= (0, 1, 2, 3, 4 , 5, 6 , 7, 8, 9, 10 , 11)
 		# Generate the Classes attributes.
-		self.pitches			= self.processInitialConditions()
-		#self.complete			= self.makeProgression()
+		self.processInitialConditions() # defines self.pitches
+		self.makeProgression() # defines self.complete
 		#self.nonLoopingSection	= 
 		#self.loopingSection	= 
 	
@@ -64,7 +65,20 @@ class Progression(object):
 	{2}
 				""".format(self.startPitch, self.missingPitch, self.pitches)
 	
+	
 	def makeProgression(self):
-		""" Constructs a Moebius tone-row.
+		""" Constructs a Moebius tone-row by iterating the function
+		2x = y inside a mod11 system until it starts repeating itself.
+		x is self.startPitch, and y the new x for the following
+		iteration.
 		"""
-		pass
+		newIndex	= 0
+		newPitch	= self.startPitch
+		toneRow		= []
+		print self.pitches
+		while toneRow.count(newPitch) < 2:
+			newPitch = self.pitches[newIndex]
+			toneRow.append(newPitch)
+			newIndex	= (newPitch + newIndex) % 11
+			print toneRow
+		

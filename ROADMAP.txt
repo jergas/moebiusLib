@@ -11,14 +11,9 @@ ROADMAP
 		- Coding conventions (elerno believes it is done).
 	- Code moebiusLib.Progression() basic methods and (generated) attributes.
 		- Write an __init__() for the class. The init will invoke:
-			- code processInitialConditions(), which will:
-				- range(0, 12)
-				- rotate until starting pitch is the first element of the list.
-				- remove missingPitch from the list.
-				- record the list in the Progression.pitches attribute.
-			- code makeProgression(), which will construct a moebius tone-row,
-				and make it available to the class through  the
-				Progression.complete attribute.
+			- code processInitialConditions() (DONE)
+			- code makeProgression() that will produce the tone progression. (IN
+				PROGRESS)
 			- code determineNonLoopingSection(), which will determine if the
 				specific tone-row has a non-looping section. If so, make it
 				available to the class through  the
