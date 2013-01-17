@@ -8,6 +8,7 @@
 #	Coded by Edgar Becerra-Santillán and Ernesto Illescas-Peláez.
 
 # Import Python native modules.
+import collections
 import sys
 
 class Progression(object):
@@ -52,10 +53,10 @@ class Progression(object):
 			first element of the list, removes missingPitch from the
 			list, and records the list as the self.pitches attribute.
 		"""
-		pitches	= list(self.chromaticSet)
+		pitches	= collections.deque(self.chromaticSet)
 		pitches.remove(self.missingPitch)
 		while pitches[0] != self.startPitch:
-			lastPitch = pitches.pop(0)
+			lastPitch = pitches.popleft()
 			pitches.append(lastPitch)
 		self.pitches = pitches
 		print """
