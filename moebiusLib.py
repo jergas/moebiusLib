@@ -57,11 +57,11 @@ class Progression(object):
 			lastPitch = pitches.pop(0)
 			pitches.append(lastPitch)
 		self.pitches = pitches
-		print """ Applied initial conditions:
+		print """
+Applied initial conditions:
 	startPitch        = {0}
 	missingPitch      = {1}
-	
- self.pitches set to:
+self.pitches set to:
 	{2}
 				""".format(self.startPitch, self.missingPitch, self.pitches)
 	
@@ -70,15 +70,23 @@ class Progression(object):
 		""" Constructs a Moebius tone-row by iterating the function
 		2x = y inside a mod11 system until it starts repeating itself.
 		x is self.startPitch, and y the new x for the following
-		iteration.
+		iteration. Records the list as the self.complete attribute.
 		"""
 		newIndex	= 0
 		newPitch	= self.startPitch
 		toneRow		= []
-		print self.pitches
-		while toneRow.count(newPitch) < 2:
+		while True:
 			newPitch = self.pitches[newIndex]
+			if toneRow.count(newPitch):
+				# When tone-row starts repeating, record where for
+				# future reference.
+				self.loopingStart	= newPitch
+				break
 			toneRow.append(newPitch)
+			# Next line equal to 2x = mod11(y)
 			newIndex	= (newPitch + newIndex) % 11
-			print toneRow
-		
+		self.complete = toneRow
+		print """
+Constructed the following tone-row:
+	{0}
+		""".format(self.complete)
