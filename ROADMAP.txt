@@ -12,15 +12,13 @@ ROADMAP
 	- Code moebiusLib.Progression() basic methods and (generated) attributes.
 		- Write an __init__() for the class. The init will invoke:
 			- code processInitialConditions() (DONE)
-			- code makeProgression() that will produce the tone progression. (IN
-				PROGRESS)
-			- code determineNonLoopingSection(), which will determine if the
+			- code makeProgression() that will produce the tone progression. (DONE)
+			- code nonLoopingNLoopingSections(), which will determine if the
 				specific tone-row has a non-looping section. If so, make it
 				available to the class through  the
-				Progression.nonLoopingSection attribute.
-			- code determineLoopingSection(), which will determine the
-				tone-row's looping section, and make it available to
-				the class through  the Progression.loopingSection attribute.
+				Progression.nonLoopingSection attribute. It will also determine
+				the tone-row's looping section, and make it available to
+				the class through  the Progression.loopingSection attribute. (DONE)
 - Stage 2
 	- Code moebiusLib.Progression() more sophisticaded methods
 		(and attributes?).

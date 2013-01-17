@@ -42,8 +42,9 @@ class Progression(object):
 		# Generate the Classes attributes.
 		self.processInitialConditions() # defines self.pitches
 		self.makeProgression() # defines self.complete
-		#self.nonLoopingSection	= 
-		#self.loopingSection	= 
+		self.determineNonLoopingNLoopingSections()	# defines
+													# self.nonLooping
+													# and self.looping
 	
 	
 	def processInitialConditions(self):
@@ -63,7 +64,7 @@ Applied initial conditions:
 	missingPitch      = {1}
 self.pitches set to:
 	{2}
-				""".format(self.startPitch, self.missingPitch, self.pitches)
+			""".format(self.startPitch, self.missingPitch, self.pitches)
 	
 	
 	def makeProgression(self):
@@ -89,4 +90,38 @@ self.pitches set to:
 		print """
 Constructed the following tone-row:
 	{0}
-		""".format(self.complete)
+			""".format(self.complete)
+		
+		
+	def determineNonLoopingNLoopingSections(self):
+		""" Determine whether self.complete has a non-looping section.
+		If so, make it available to the class through
+		self.nonLoopingSection attribute; else attribute will be None.
+		Also determine the tone-row's looping section, and make it
+		available through self.loopingSection.
+		"""
+		toggle		= 0
+		self.nonLooping	= []
+		self.looping		= []
+		for pitch in self.complete:
+			if pitch == self.loopingStart:
+				toggle = 1
+			if not toggle:
+				self.nonLooping.append(pitch)
+			else:
+				self.looping.append(pitch)
+		if not len(self.nonLooping):
+			self.nonLooping = None
+		if self.nonLooping:
+			print """
+The progression's nonLooping section is:
+	{0}
+The progression's looping section is:
+	{1}
+				""".format(self.nonLooping, self.looping)
+		else:
+			print """
+The progression lacks a non-looping section.
+The progression's looping section is:
+	{0}
+			""".format(self.looping)
