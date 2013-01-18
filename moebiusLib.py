@@ -49,7 +49,7 @@ class Progression(object):
 	
 	
 	def processInitialConditions(self):
-		""" Rotates the chromatic set until slef.startingPitch is the
+		""" Rotates the chromatic set until self.startingPitch is the
 			first element of the list, removes missingPitch from the
 			list, and records the list as the self.pitches attribute.
 		"""
