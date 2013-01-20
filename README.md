@@ -28,20 +28,12 @@ http://ernesto.yuanai.org/
 http://daringfireball.net/projects/markdown/syntax
 
 
-
 AUTHORS
 -------
 
 Moebius Matrix Library is coded by Edgar Becerra-Santillán and Ernesto
 Illescas-Peláez, members of the CL Free Software Development Collective.
 
-
-LICENSING
----------
-
-The main decision here is whether, as a library, we allow it to be used to create proprietary works. It is also necessary to find out what the implications are of using the GPL for a library. I, Jergas, lean towards GPL V3 with the Affero clause.
-I, elerno, have read the GPL V3 and agree with it, while considering that the
-Affero clause might not be necessary for this project. Why include it, Jergas?
 
 HOW TO
 ------
