@@ -1,11 +1,32 @@
 # -*- coding: UTF-8 -*-
 
+
+# Copyright Ernesto Illescas-Peláez 2006, Ernesto Illescas-Peláez and Edgar
+# Becerra-Santillan 2013 
+
+# This file is part of moebiusLib.
+
+# moebiusLib is free software: you can redistribute it and/or modify
+# it under the terms of the GNU Affero General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+
+# moebiusLib is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU Affero General Public License for more details.
+
+# You should have received a copy of the GNU Affero General Public License
+#along with moebiusLib.  If not, see <http://www.gnu.org/licenses/>.
+
+## Contains classes that collect numeric utilities.
+
 #	Classes that generate "Moebius Progressions" and transposition
 # matrixes as conceived by composer Ernesto Illescas-Peláez in his
 # Master's thesis "An Organizing Tide of Chaos - Resonances of Chaos
 # Theory in a Composer's Craftsmanship".
 #
-#	Coded by Edgar Becerra-Santillán and Ernesto Illescas-Peláez.
+
 
 # Import Python native modules.
 import collections
