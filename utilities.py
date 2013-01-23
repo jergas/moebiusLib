@@ -31,13 +31,13 @@
 # Import Python native modules.
 class Identities(object):
 	""" Contains methods to generate and work with series identites:
-	retrograde, inverse and inverse-retrograde.
+	retrograde, inverse and retrograd-inverse and transpositions.
 	"""
-	def __init__(self, original):
-		""" Set the original series as the self.original attribute.
-		original	---> a list: the original series
+	def __init__(self, originalSeries):
+		""" Set originalSeries as the self.originalSeries attribute.
+		originalSeries	---> a list: the original series
 		"""
-		self.original	= original
+		self.originalSeries	= originalSeries
 		
 		
 	def seriesToIntervals(self, points):
@@ -55,25 +55,69 @@ class Identities(object):
 		return intervals
 	
 	
-	def intervalsToSeries(self, intervals, start, modulo=None):
+	def intervalsToSeries(self, intervals, start, modulo=12):
 		""" Constructs a list of values from a list of intervals.
 		intervals	---> a list of intervals.
 		start		---> the starting ponit of the returned series.
+		modulo		---> optional arg. Don't use when working with PCS
 		return		-->> a list
 		"""
 		series	= [start]
 		for x in intervals:
 			element = x + series[-1]
 			if modulo:
-				element = element % 12
+				element = element % modulo
 			series.append(element)
 		return series
 	
 	
-	def retrograde(self):
-		""" Returns the reversed original without affecting
-		self.original.
-		return	-->> the retrograde identity of self.original
+	def original(self):
+		""" Returns the original series.
+		return	-->> the original series
 		"""
-		retrograde = list(reversed(self.original))
+		return self.originalSeries
+	
+	
+	def retrograde(self):
+		""" Returns the retrograde series. No transposition takes place
+		(i.e. retrograde[0] = original[-1]).
+		return	-->> the retrograde identity of self.originalSeries
+		"""
+		retrograde = list(reversed(self.originalSeries))
 		return retrograde
+	
+	
+	def inverse(self):
+		""" Returns the inverse series. No transposition takes place
+		(i.e. inverse[0] = original[0]).
+		return	-->> the inverse identity of self.originalSeries
+		"""
+		origin				= self.originalSeries[0]
+		intervals			= self.seriesToIntervals(self.originalSeries)
+		invertedIntervals	= []
+		for interval in intervals:
+			interval *= -1
+			invertedIntervals.append(interval)
+		inverse		= self.intervalsToSeries(invertedIntervals, origin)
+		return inverse
+	
+	
+	def retrogradeInverse(self):
+		""" Returns the retrograde of the inverse series. No
+		transposition takes place (i.e. retrogradeInverse[0] =
+		inverse[-1]).
+		return	-->> the retrograde-inverse identity of
+						self.originalSeries
+		"""
+		inverseSeries = self.inverse()
+		retrogradeInverse	= list(reversed(inverseSeries))
+		return retrogradeInverse
+	
+	 def transposition(self, startPitch, identitiy='original'):
+	 	""" Transposes self.original or the desired identity
+	 	(retrograde, inverse, retrogradeInverse).
+	 	startPitch	---> Series\'s starting pitch
+	 	identity	---> optionally choose to return a transposed
+	 						identity
+	 	"""
+	 	pass
