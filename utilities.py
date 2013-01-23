@@ -30,8 +30,9 @@
 
 # Import Python native modules.
 class Identities(object):
-	""" Contains methods to generate and work with series identites:
-	retrograde, inverse and retrograd-inverse and transpositions.
+	""" Contains methods to generate and transpose series identites:
+	original(), retrograde(), inverse() retrogradInverse() and
+	transposition().
 	"""
 	def __init__(self, originalSeries):
 		""" Set originalSeries as the self.originalSeries attribute.
@@ -55,11 +56,11 @@ class Identities(object):
 		return intervals
 	
 	
-	def intervalsToSeries(self, intervals, start, modulo=12):
+	def intervalsToSeries(self, intervals, start, modulo=None):
 		""" Constructs a list of values from a list of intervals.
 		intervals	---> a list of intervals.
 		start		---> the starting ponit of the returned series.
-		modulo		---> optional arg. Don't use when working with PCS
+		modulo		---> optional arg. 12 when working TET
 		return		-->> a list
 		"""
 		series	= [start]
@@ -98,7 +99,8 @@ class Identities(object):
 		for interval in intervals:
 			interval *= -1
 			invertedIntervals.append(interval)
-		inverse		= self.intervalsToSeries(invertedIntervals, origin)
+		inverse		= self.intervalsToSeries(invertedIntervals, origin,
+												modulo=12)
 		return inverse
 	
 	
@@ -113,11 +115,24 @@ class Identities(object):
 		retrogradeInverse	= list(reversed(inverseSeries))
 		return retrogradeInverse
 	
-	 def transposition(self, startPitch, identitiy='original'):
-	 	""" Transposes self.original or the desired identity
-	 	(retrograde, inverse, retrogradeInverse).
-	 	startPitch	---> Series\'s starting pitch
-	 	identity	---> optionally choose to return a transposed
-	 						identity
-	 	"""
-	 	pass
+	
+	def transposition(self, startPitch, identitiy='original'):
+		""" Transposes self.original or the desired identity
+		(retrograde, inverse, retrogradeInverse).
+		startPitch	---> Series\'s starting pitch
+		identity	---> optionally choose to return a transposed
+							identity
+		"""
+		# Define which identity will be transposed.
+		if identitiy == 'original':
+			series = self.original()
+		elif identitiy == 'retrograde':
+			series = self.retrograde()
+		elif identitiy == 'inverse':
+			series = self.inverse()
+		elif identitiy == 'retrogradeInverse':
+			series = self.retrogradeInverse()
+		# Make the transposition.
+		intervals = self.seriesToIntervals(series)
+		transposition = self.intervalsToSeries(intervals, startPitch, modulo=12)
+		return transposition
