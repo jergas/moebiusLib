@@ -29,29 +29,30 @@
 
 
 # Import Python native modules.
-class Identitis(object):
-	""" Contains methods to generate and work with tone-row identites:
+class Identities(object):
+	""" Contains methods to generate and work with series identites:
 	retrograde, inverse and inverse-retrograde.
 	"""
-	def __init__(self):
-		""" Initialization of the class.Does nothing.
+	def __init__(self, original):
+		""" Set the original series as the self.original attribute.
+		original	---> a list: the original series
 		"""
-		pass
-	
-	
+		self.original	= original
+		
+		
 	def seriesToIntervals(self, points):
 		""" Converts a list of points into a list of intervals.
 		points	---> a list of points.
 		return	-->> a list of intervals.
 		"""
-		intrvals	= []
+		intervals	= []
 		a			= points[0]
 		for x in points:
-			newIntrval = x - a
-			intrvals.append(newIntrval)
+			newInterval = x - a
+			intervals.append(newInterval)
 			a = x
-		intrvals.pop(0)
-		return intrvals
+		intervals.pop(0)
+		return intervals
 	
 	
 	def intervalsToSeries(self, intervals, start, modulo=None):
@@ -67,3 +68,12 @@ class Identitis(object):
 				element = element % 12
 			series.append(element)
 		return series
+	
+	
+	def retrograde(self):
+		""" Returns the reversed original without affecting
+		self.original.
+		return	-->> the retrograde identity of self.original
+		"""
+		retrograde = list(reversed(self.original))
+		return retrograde

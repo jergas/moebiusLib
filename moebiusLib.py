@@ -31,6 +31,10 @@
 # Import Python native modules.
 import collections
 import sys
+# Import user modules
+import utilities
+
+Identities = utilities.Identities
 
 class Progression(object):
 	""" Generates a Moebius progression and related attributes. Contains
@@ -59,7 +63,8 @@ class Progression(object):
 				raise RuntimeError('startPitch must be >= 0 and <=11!')
 		else:
 			raise RuntimeError('startPitch AND missingPitch must be integers!')
-		# List representing the chromatic scale (C= 0).
+
+		# Tuple representing the chromatic scale (C= 0).
 		self.chromaticSet	= (0, 1, 2, 3, 4 , 5, 6 , 7, 8, 9, 10 , 11)
 		# Generate the Classes attributes.
 		self.processInitialConditions() # defines self.pitches
