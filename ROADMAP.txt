@@ -24,7 +24,7 @@ ROADMAP
 		(and attributes?).
 		- code methods to generate the tone-row identities: retrograde, inverse
 			and inverse-retrograde. Implement in a separate (super?) class,
-			since the functionality has more general purpose applications. (IN PROGRESS)
+			since the functionality has more general purpose applications. (DONE)
 	- Code moebiusLib.Matrix() basic methods and (generated) attributes.
 		- use moebiusLib.Progression() as super-class for Matrix()
 		- Code makeTranspositionMatrix() which will construct a transposition
