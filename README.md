@@ -34,6 +34,8 @@ AUTHORS
 Moebius Matrix Library is coded by Edgar Becerra-Santillán and Ernesto
 Illescas-Peláez, members of the CL Free Software Development Collective.
 
+Some code has been recycled from <a href="https://github.com/elerno/cascaBell">cascaBell</a>
+
 
 HOW TO
 ------

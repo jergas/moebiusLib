@@ -4,11 +4,11 @@ ROADMAP
 
 - Stage 1
 	- Write documentation
-		- README (in progress).
-		- This text (done for now. elerno wonders if the roadmap is clear
+		- README (ONGOING).
+		- This text (ONGOING elerno wonders if the roadmap is clear
 						enough?).
-		- License (in progress).
-		- Coding conventions (elerno believes it is done).
+		- License (DONE).
+		- Coding conventions (ONGOING).
 	- Code moebiusLib.Progression() basic methods and (generated) attributes.
 		- Write an __init__() for the class. The init will invoke:
 			- code processInitialConditions() (DONE)
@@ -23,7 +23,8 @@ ROADMAP
 	- Code moebiusLib.Progression() more sophisticaded methods
 		(and attributes?).
 		- code methods to generate the tone-row identities: retrograde, inverse
-			and inverse-retrograde.
+			and inverse-retrograde. Implement in a separate (super?) class,
+			since the functionality has more general purpose applications. (DONE)
 	- Code moebiusLib.Matrix() basic methods and (generated) attributes.
 		- use moebiusLib.Progression() as super-class for Matrix()
 		- Code makeTranspositionMatrix() which will construct a transposition

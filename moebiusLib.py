@@ -31,16 +31,42 @@
 # Import Python native modules.
 import collections
 import sys
+# Import user modules
+import utilities
 
-class Progression(object):
-	""" Generates a Moebius progression and related attributes. Contains
-	methods useful for working with the progression.
+Identities = utilities.Identities
+
+class Progression(Identities):
+	""" Generates a Moebius progression and related attributes
+	__init__() Takes 2 argumenst: startPitch and missingPitch. Contains
+	attributes and methods useful for working with the progression.
+	
+	Available attributes are:
+	chromaticSet	--- (0, 1, 2, ... 11)
+	pitches			--- deque object containing the chromatic set minus
+							missingPitch
+	complete		--- one loop of the progression (without repeating
+							startPitch)
+	nonLooping		--- the non-looping part of the progression. If the
+							progression lacks it, None
+	loopingStart	--- the looping section of the progression
+	
+	Available methods are:
+	original()			--- returns complete
+	retrograde()		--- returns the retrograde of complete
+	inverse()			--- returns the inverse of complete
+	retrogradeInverse()	--- returns the retrograde-inverse of complete
+	transposition()		--- needs startPitch argument, and optionally
+							identitiy=\'original\'.
 	"""
 	
 	def __init__(self, startPitch, missingPitch):
 		""" Set the initial conditions for generating a Moebius pitch
 		progression, and generate the tone-row. Pitches are represented
-		by integers: C = 0, C# = 1, D = 2, etc.
+		by integers: C = 0, C# = 1, D = 2, etc. Uses the Identities()
+		super-class to make available the following methods for the
+		whole progression: original(), retrograde(), inverse() and
+		retrogradeInverse().
 		startPitch		---> The first note of the progression
 		missingPitch	---> A missing pitch in the chromatic set
 		"""
@@ -59,7 +85,8 @@ class Progression(object):
 				raise RuntimeError('startPitch must be >= 0 and <=11!')
 		else:
 			raise RuntimeError('startPitch AND missingPitch must be integers!')
-		# List representing the chromatic scale (C= 0).
+
+		# Tuple representing the chromatic scale (C= 0).
 		self.chromaticSet	= (0, 1, 2, 3, 4 , 5, 6 , 7, 8, 9, 10 , 11)
 		# Generate the Classes attributes.
 		self.processInitialConditions() # defines self.pitches
@@ -67,6 +94,10 @@ class Progression(object):
 		self.determineNonLoopingNLoopingSections()	# defines
 													# self.nonLooping
 													# and self.looping
+		# Initialize the Identites() superclass that makes the
+		# original(), retrograde(), inverse(), retrogradeInverse() and
+		# transposition() methods available (for self.complete).
+		Identities.__init__(self, self.complete)
 	
 	
 	def processInitialConditions(self):
