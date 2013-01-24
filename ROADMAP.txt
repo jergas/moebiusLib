@@ -26,10 +26,10 @@ ROADMAP
 			and inverse-retrograde. Implement in a separate (super?) class,
 			since the functionality has more general purpose applications. (DONE)
 	- Code moebiusLib.Matrix() basic methods and (generated) attributes.
-		- use moebiusLib.Progression() as super-class for Matrix() (IN PROGRESS)
+		- use moebiusLib.Progression() as super-class for Matrix() (Done)
 		- Code makeTranspositionMatrix() which will construct a transposition
-			matrix with the original tone-row as first notes for the subsequent
-			transpositions.
+			matrix with the inverse tone-row as first notes for the subsequent
+			transpositions. (IN PROGRESS)
 		- Add keyword argument to __init__() so that the
 			originating tone-row can be an identity of Progression.complete.
 		- Code makeInverseMatrix() which will construct a transposition
