@@ -2,7 +2,7 @@ moebiusLib
 ==========
 
 Moebius Matrix Library,
-an algorithmic composition library based on chaos theory and written in python 
+an algorithmic composition library inspired on chaos theory and written in python 
 with csound.
 
 

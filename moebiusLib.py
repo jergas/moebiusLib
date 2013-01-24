@@ -30,6 +30,7 @@
 
 # Import Python native modules.
 import collections
+import numpy
 import sys
 # Import user modules
 import utilities
@@ -178,3 +179,56 @@ The progression lacks a non-looping section.
 The progression's looping section is:
 	{0}
 			""".format(self.looping)
+
+
+
+class Matrix(Progression):
+	""" Constructs a transposition matrix with the original tone-row (or
+	 an identity) as the first row of the matrix, and its inverse as
+	 first note for the subsequent transpositions.
+	"""
+	
+	def __init__(self, startPitch, missingPitch, identity='original'):
+		""" Uses the Progression superclass to generate a moebius
+		tone-row and the optional argument to set the origin of the
+		Matrix. Constructs a transposition matrix.
+		startPitch		---> The first note of the progression
+		missingPitch	---> A missing pitch in the chromatic set
+		identity		---> Optionally use the retrograde, inverse, or
+								retrogradeInverse to construct the
+								matrix
+		"""
+		Progression.__init__(self, startPitch, missingPitch)
+		if identity == 'original':
+			self.row1 = self.original()
+		elif identity == 'retrograde':
+			self.row1 = self.retrograde()
+		elif identity == 'inverse':
+			self.row1 = self.inverse()
+		elif identity == 'retrogradeInverse':
+			self.row1 = self.retrogradeInverse()
+		print """ The {0} tone-row will be used to generate a
+transposition matrix. row 1 will be: {1}
+			""".format(identity, self.row1)
+		# Re-nitialize the Identites() superclass that makes the
+		# original(), retrograde(), inverse(), retrogradeInverse() and
+		# transposition() methods available for self.row1, instead of
+		# for Progresion.complete.
+		Identities.__init__(self, self.row1)
+		self.constructMatrix() # Generates the self.matrix attribute
+		print """ Generated the following transposition matrix:
+
+{0}
+			""".format(self.matrix)
+	
+	
+	def constructMatrix(self):
+		""" Constructs the transposition matrix with self.row1 as row 1,
+		and its inverse identity as column 1.
+		"""
+		column1		= self.inverse()
+		matrix	= []
+		for rowStart in column1:
+			row = self.transposition(rowStart)
+			matrix.append(row)
+		self.matrix = numpy.matrix(matrix)
