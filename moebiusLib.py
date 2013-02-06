@@ -39,7 +39,8 @@ Identities = utilities.Identities
 
 class Progression(Identities):
 	""" Generates a Moebius progression and related attributes
-	__init__() Takes 2 argumenst: startPitch and missingPitch. Contains
+	__init__() Takes 2 integer argumenst, which are converted to 
+	their remainder modulo 12: startPitch and missingPitch. Contains
 	attributes and methods useful for working with the progression.
 	
 	Available attributes are:
@@ -71,21 +72,14 @@ class Progression(Identities):
 		startPitch		---> The first note of the progression
 		missingPitch	---> A missing pitch in the chromatic set
 		"""
-		# Test whether initialization data is valid. If not raise error.
+		# Test whether initialization data is valid. If not raise an error.
 		if isinstance(startPitch, int) and isinstance(missingPitch, int):
-			if startPitch >=0 and startPitch <=11:
-				if missingPitch >=0 and missingPitch <=11:
-					if startPitch != missingPitch:
-						self.startPitch		= startPitch
-						self.missingPitch	= missingPitch
-					else:
-						raise RuntimeError('startPitch and missingPitch can not be equal')
-				else:
-					raise RuntimeError('missingPitch must be >= 0 and <=11!')
-			else:
-				raise RuntimeError('startPitch must be >= 0 and <=11!')
+			self.startPitch		= startPitch   % 12
+			self.missingPitch	= missingPitch % 12
+			if self.startPitch == self.missingPitch:
+				raise RuntimeError('startPitch and missingPitch can not be equivalent modulo 12')
 		else:
-			raise RuntimeError('startPitch AND missingPitch must be integers!')
+			raise RuntimeError('startPitch and missingPitch must be integers!')
 
 		# Tuple representing the chromatic scale (C= 0).
 		self.chromaticSet	= (0, 1, 2, 3, 4 , 5, 6 , 7, 8, 9, 10 , 11)
@@ -194,27 +188,27 @@ class Matrix(Progression):
 		Matrix. Constructs a transposition matrix.
 		startPitch		---> The first note of the progression
 		missingPitch	---> A missing pitch in the chromatic set
-		identity		---> Optionally use the retrograde, inverse, or
-								retrogradeInverse to construct the
+		identity		---> Optionally use 'retrograde', 'inverse', or
+								'retrogradeInverse' to construct the
 								matrix
 		"""
 		Progression.__init__(self, startPitch, missingPitch)
-		if identity == 'original':
-			self.row1 = self.original()
-		elif identity == 'retrograde':
-			self.row1 = self.retrograde()
-		elif identity == 'inverse':
-			self.row1 = self.inverse()
-		elif identity == 'retrogradeInverse':
-			self.row1 = self.retrogradeInverse()
+		try:
+			self.row1 = getattr(self, identity)()
+		except AttributeError:
+			raise AttributeError('identity must be the name of a method of Identities() in utilities.py!')
+			return
+		#self.row1 = getattr(self, identity)()
 		print """ The {0} tone-row will be used to generate a
 transposition matrix. row 1 will be: {1}
 			""".format(identity, self.row1)
-		# Re-nitialize the Identites() superclass that makes the
+		# Re-initialize the Identites() superclass that makes the
 		# original(), retrograde(), inverse(), retrogradeInverse() and
 		# transposition() methods available for self.row1, instead of
 		# for Progresion.complete.
 		Identities.__init__(self, self.row1)
+		print """ Its inverse will be column 1: {0}
+			""".format(self.inverse())
 		self.constructMatrix() # Generates the self.matrix attribute
 		print """ Generated the following transposition matrix:
 
@@ -226,7 +220,7 @@ transposition matrix. row 1 will be: {1}
 		""" Constructs the transposition matrix with self.row1 as row 1,
 		and its inverse identity as column 1.
 		"""
-		column1		= self.inverse()
+		column1	= self.inverse()
 		matrix	= []
 		for rowStart in column1:
 			row = self.transposition(rowStart)
