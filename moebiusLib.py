@@ -188,12 +188,17 @@ class Matrix(Progression):
 		Matrix. Constructs a transposition matrix.
 		startPitch		---> The first note of the progression
 		missingPitch	---> A missing pitch in the chromatic set
-		identity		---> Optionally use the retrograde, inverse, or
-								retrogradeInverse to construct the
+		identity		---> Optionally use 'retrograde', 'inverse', or
+								'retrogradeInverse' to construct the
 								matrix
 		"""
 		Progression.__init__(self, startPitch, missingPitch)
-		self.row1 = getattr(self, identity)()
+		try:
+			self.row1 = getattr(self, identity)()
+		except AttributeError:
+			raise AttributeError('identity must be the name of a method of Identities() in utilities.py!')
+			return
+		#self.row1 = getattr(self, identity)()
 		print """ The {0} tone-row will be used to generate a
 transposition matrix. row 1 will be: {1}
 			""".format(identity, self.row1)
@@ -202,6 +207,8 @@ transposition matrix. row 1 will be: {1}
 		# transposition() methods available for self.row1, instead of
 		# for Progresion.complete.
 		Identities.__init__(self, self.row1)
+		print """ Its inverse will be column 1: {0}
+			""".format(self.inverse())
 		self.constructMatrix() # Generates the self.matrix attribute
 		print """ Generated the following transposition matrix:
 
