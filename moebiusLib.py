@@ -182,7 +182,8 @@ class Matrix(Progression):
 	 first note for the subsequent transpositions.
 	"""
 	
-	def __init__(self, startPitch, missingPitch, identity='original'):
+	def __init__(self, startPitch, missingPitch, identity='original',
+					transposeTo=None):
 		""" Uses the Progression superclass to generate a moebius
 		tone-row and the optional argument to set the origin of the
 		Matrix. Constructs a transposition matrix.
@@ -191,14 +192,22 @@ class Matrix(Progression):
 		identity		---> Optionally use 'retrograde', 'inverse', or
 								'retrogradeInverse' to construct the
 								matrix
+		transposeTO		---> Optionally start row1 with this value
 		"""
 		Progression.__init__(self, startPitch, missingPitch)
+		# Test to see if the identity attribute is valid. if so, define
+		# self.row1
 		try:
-			self.row1 = getattr(self, identity)()
+			# Transpse the tone row if necessary.
+			if transposeTo != None:
+				self.row1 = self.transposition(transposeTo, identity)
+				print """ The tone-row has been transposed  so that it starts with {0}.
+					""".format(transposeTo)
+			else:
+				self.row1 = getattr(self, identity)()
 		except AttributeError:
 			raise AttributeError('identity must be the name of a method of Identities() in utilities.py!')
 			return
-		#self.row1 = getattr(self, identity)()
 		print """ The {0} tone-row will be used to generate a
 transposition matrix. row 1 will be: {1}
 			""".format(identity, self.row1)
