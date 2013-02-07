@@ -19,14 +19,12 @@
 # You should have received a copy of the GNU Affero General Public License
 #along with moebiusLib.  If not, see <http://www.gnu.org/licenses/>.
 
-## Contains classes that collect numeric utilities.
-
-#	Classes that generate "Moebius Progressions" and transposition
-# matrixes as conceived by composer Ernesto Illescas-Peláez in his
-# Master's thesis "An Organizing Tide of Chaos - Resonances of Chaos
-# Theory in a Composer's Craftsmanship".
-#
-
+"""
+Classes that generate \"Moebius Progressions\" and transposition
+matrixes as conceived by composer Ernesto Illescas-Peláez in his
+Master's thesis \"An Organizing Tide of Chaos - Resonances of Chaos
+Theory in a Composer's Craftsmanship\".
+"""
 
 # Import Python native modules.
 import collections
