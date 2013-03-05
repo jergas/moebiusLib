@@ -6,7 +6,7 @@
 <table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
 <tr bgcolor="#7799ee">
 <td valign=bottom>&nbsp;<br>
-<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>moebiusLib</strong></big></big> (version Beta)</font></td
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>moebiusLib</strong></big></big> (version Beta, 20 February 2013)</font></td
 ><td align=right valign=bottom
 ><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:/home/elerno/codeRepos/moebiusLib/moebiusLib.py">/home/elerno/codeRepos/moebiusLib/moebiusLib.py</a></font></td></tr></table>
     <p><tt>Classes&nbsp;that&nbsp;generate&nbsp;"Moebius&nbsp;Progressions"&nbsp;and&nbsp;transposition<br>
@@ -53,7 +53,25 @@ Theory&nbsp;in&nbsp;a&nbsp;Composer's&nbsp;Craftsmanship".</tt></p>
 <tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
 <td colspan=2><tt>Constructs&nbsp;a&nbsp;transposition&nbsp;matrix&nbsp;with&nbsp;the&nbsp;original&nbsp;tone-row&nbsp;(or<br>
 an&nbsp;identity)&nbsp;as&nbsp;the&nbsp;first&nbsp;row&nbsp;of&nbsp;the&nbsp;matrix,&nbsp;and&nbsp;its&nbsp;inverse&nbsp;as<br>
-first&nbsp;note&nbsp;for&nbsp;the&nbsp;subsequent&nbsp;transpositions.<br>&nbsp;</tt></td></tr>
+first&nbsp;note&nbsp;for&nbsp;the&nbsp;subsequent&nbsp;transpositions.&nbsp;<a href="#Matrix-__init__">__init__</a>()&nbsp;takes&nbsp;2<br>
+mandatory&nbsp;integer&nbsp;arguments,&nbsp;which&nbsp;are&nbsp;converted&nbsp;to&nbsp;&nbsp;their&nbsp;remainder<br>
+modulo&nbsp;12:&nbsp;startPitch&nbsp;and&nbsp;missingPitch;&nbsp;and&nbsp;to&nbsp;optional&nbsp;ones<br>
+identity&nbsp;('original',&nbsp;'retrograde',&nbsp;'inverse',&nbsp;'retrogradeInverse')<br>
+and&nbsp;transposeTo.<br>
+&nbsp;<br>
+Available&nbsp;attributes&nbsp;are:<br>
+matrix&nbsp;&nbsp;&nbsp;&nbsp;---&nbsp;a&nbsp;matrix&nbsp;object&nbsp;with&nbsp;the&nbsp;'identity'&nbsp;tone&nbsp;row&nbsp;as&nbsp;first<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;row,&nbsp;and&nbsp;its&nbsp;inverse&nbsp;as&nbsp;the&nbsp;first&nbsp;column.&nbsp;e.g.:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[[&nbsp;1&nbsp;&nbsp;2&nbsp;&nbsp;4&nbsp;&nbsp;8&nbsp;&nbsp;5&nbsp;10&nbsp;&nbsp;9&nbsp;&nbsp;7&nbsp;&nbsp;3&nbsp;&nbsp;6]<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[&nbsp;0&nbsp;&nbsp;1&nbsp;&nbsp;3&nbsp;&nbsp;7&nbsp;&nbsp;4&nbsp;&nbsp;9&nbsp;&nbsp;8&nbsp;&nbsp;6&nbsp;&nbsp;2&nbsp;&nbsp;5]<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[10&nbsp;11&nbsp;&nbsp;1&nbsp;&nbsp;5&nbsp;&nbsp;2&nbsp;&nbsp;7&nbsp;&nbsp;6&nbsp;&nbsp;4&nbsp;&nbsp;0&nbsp;&nbsp;3]<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[&nbsp;6&nbsp;&nbsp;7&nbsp;&nbsp;9&nbsp;&nbsp;1&nbsp;10&nbsp;&nbsp;3&nbsp;&nbsp;2&nbsp;&nbsp;0&nbsp;&nbsp;8&nbsp;11]<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[&nbsp;9&nbsp;10&nbsp;&nbsp;0&nbsp;&nbsp;4&nbsp;&nbsp;1&nbsp;&nbsp;6&nbsp;&nbsp;5&nbsp;&nbsp;3&nbsp;11&nbsp;&nbsp;2]<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[&nbsp;4&nbsp;&nbsp;5&nbsp;&nbsp;7&nbsp;11&nbsp;&nbsp;8&nbsp;&nbsp;1&nbsp;&nbsp;0&nbsp;10&nbsp;&nbsp;6&nbsp;&nbsp;9]<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[&nbsp;5&nbsp;&nbsp;6&nbsp;&nbsp;8&nbsp;&nbsp;0&nbsp;&nbsp;9&nbsp;&nbsp;2&nbsp;&nbsp;1&nbsp;11&nbsp;&nbsp;7&nbsp;10]<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[&nbsp;7&nbsp;&nbsp;8&nbsp;10&nbsp;&nbsp;2&nbsp;11&nbsp;&nbsp;4&nbsp;&nbsp;3&nbsp;&nbsp;1&nbsp;&nbsp;9&nbsp;&nbsp;0]<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[11&nbsp;&nbsp;0&nbsp;&nbsp;2&nbsp;&nbsp;6&nbsp;&nbsp;3&nbsp;&nbsp;8&nbsp;&nbsp;7&nbsp;&nbsp;5&nbsp;&nbsp;1&nbsp;&nbsp;4]<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[&nbsp;8&nbsp;&nbsp;9&nbsp;11&nbsp;&nbsp;3&nbsp;&nbsp;0&nbsp;&nbsp;5&nbsp;&nbsp;4&nbsp;&nbsp;2&nbsp;10&nbsp;&nbsp;1]]<br>&nbsp;</tt></td></tr>
 <tr><td>&nbsp;</td>
 <td width="100%"><dl><dt>Method resolution order:</dt>
 <dd><a href="moebiusLib.html#Matrix">Matrix</a></dd>
@@ -66,12 +84,12 @@ Methods defined here:<br>
 <dl><dt><a name="Matrix-__init__"><strong>__init__</strong></a>(self, startPitch, missingPitch, identity<font color="#909090">='original'</font>, transposeTo<font color="#909090">=None</font>)</dt><dd><tt>Uses&nbsp;the&nbsp;<a href="#Progression">Progression</a>&nbsp;superclass&nbsp;to&nbsp;generate&nbsp;a&nbsp;moebius<br>
 tone-row&nbsp;and&nbsp;the&nbsp;optional&nbsp;argument&nbsp;to&nbsp;set&nbsp;the&nbsp;origin&nbsp;of&nbsp;the<br>
 <a href="#Matrix">Matrix</a>.&nbsp;Constructs&nbsp;a&nbsp;transposition&nbsp;matrix.<br>
-startPitch&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;---&gt;&nbsp;The&nbsp;first&nbsp;note&nbsp;of&nbsp;the&nbsp;progression<br>
+startPitch&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;---&gt;&nbsp;The&nbsp;first&nbsp;note&nbsp;of&nbsp;the&nbsp;progression<br>
 missingPitch&nbsp;&nbsp;&nbsp;&nbsp;---&gt;&nbsp;A&nbsp;missing&nbsp;pitch&nbsp;in&nbsp;the&nbsp;chromatic&nbsp;set<br>
-identity&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;---&gt;&nbsp;Optionally&nbsp;use&nbsp;'retrograde',&nbsp;'inverse',&nbsp;or<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'retrogradeInverse'&nbsp;to&nbsp;construct&nbsp;the<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;matrix<br>
-transposeTO&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;---&gt;&nbsp;Optionally&nbsp;start&nbsp;row1&nbsp;with&nbsp;this&nbsp;value</tt></dd></dl>
+identity&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;---&gt;&nbsp;Optionally&nbsp;use&nbsp;'retrograde',&nbsp;'inverse',&nbsp;or<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'retrogradeInverse'&nbsp;to&nbsp;construct&nbsp;the<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;matrix<br>
+transposeTO&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;---&gt;&nbsp;Optionally&nbsp;start&nbsp;row1&nbsp;with&nbsp;this&nbsp;value</tt></dd></dl>
 
 <dl><dt><a name="Matrix-constructMatrix"><strong>constructMatrix</strong></a>(self)</dt><dd><tt>Constructs&nbsp;the&nbsp;transposition&nbsp;matrix&nbsp;with&nbsp;self.<strong>row1</strong>&nbsp;as&nbsp;row&nbsp;1,<br>
 and&nbsp;its&nbsp;inverse&nbsp;identity&nbsp;as&nbsp;column&nbsp;1.</tt></dd></dl>
@@ -99,10 +117,10 @@ Methods inherited from <a href="utilities.html#Identities">utilities.Identities<
 intervals&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;---&gt;&nbsp;a&nbsp;list&nbsp;of&nbsp;intervals.<br>
 start&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;---&gt;&nbsp;the&nbsp;starting&nbsp;ponit&nbsp;of&nbsp;the&nbsp;returned&nbsp;series.<br>
 modulo&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;---&gt;&nbsp;optional&nbsp;arg.&nbsp;12&nbsp;when&nbsp;working&nbsp;TET<br>
-return&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--&gt;&gt;&nbsp;a&nbsp;list</tt></dd></dl>
+return&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--&gt;&gt;&nbsp;a&nbsp;list&nbsp;of&nbsp;points</tt></dd></dl>
 
 <dl><dt><a name="Matrix-inverse"><strong>inverse</strong></a>(self)</dt><dd><tt>Returns&nbsp;the&nbsp;inverse&nbsp;series.&nbsp;No&nbsp;transposition&nbsp;takes&nbsp;place<br>
-(i.e.&nbsp;inverse[0]&nbsp;=&nbsp;original[0]).<br>
+(i.e.&nbsp;inverse[0]&nbsp;=&nbsp;original[-1]).<br>
 return&nbsp;&nbsp;--&gt;&gt;&nbsp;the&nbsp;inverse&nbsp;identity&nbsp;of&nbsp;self.<strong>originalSeries</strong></tt></dd></dl>
 
 <dl><dt><a name="Matrix-original"><strong>original</strong></a>(self)</dt><dd><tt>Returns&nbsp;the&nbsp;original&nbsp;series.<br>
@@ -143,8 +161,8 @@ Data descriptors inherited from <a href="utilities.html#Identities">utilities.Id
 <font color="#000000" face="helvetica, arial"><a name="Progression">class <strong>Progression</strong></a>(<a href="utilities.html#Identities">utilities.Identities</a>)</font></td></tr>
     
 <tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
-<td colspan=2><tt>Generates&nbsp;a&nbsp;Moebius&nbsp;progression&nbsp;and&nbsp;related&nbsp;attributes<br>
-<a href="#Progression-__init__">__init__</a>()&nbsp;Takes&nbsp;2&nbsp;integer&nbsp;argumenst,&nbsp;which&nbsp;are&nbsp;converted&nbsp;to&nbsp;<br>
+<td colspan=2><tt>Generates&nbsp;a&nbsp;Moebius&nbsp;progression&nbsp;and&nbsp;related&nbsp;attributes.<br>
+<a href="#Progression-__init__">__init__</a>()&nbsp;Takes&nbsp;2&nbsp;integer&nbsp;arguments,&nbsp;which&nbsp;are&nbsp;converted&nbsp;to&nbsp;<br>
 their&nbsp;remainder&nbsp;modulo&nbsp;12:&nbsp;startPitch&nbsp;and&nbsp;missingPitch.&nbsp;Contains<br>
 attributes&nbsp;and&nbsp;methods&nbsp;useful&nbsp;for&nbsp;working&nbsp;with&nbsp;the&nbsp;progression.<br>
 &nbsp;<br>
@@ -152,19 +170,20 @@ Available&nbsp;attributes&nbsp;are:<br>
 chromaticSet&nbsp;&nbsp;&nbsp;&nbsp;---&nbsp;(0,&nbsp;1,&nbsp;2,&nbsp;...&nbsp;11)<br>
 pitches&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;---&nbsp;deque&nbsp;object&nbsp;containing&nbsp;the&nbsp;chromatic&nbsp;set&nbsp;minus<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;missingPitch<br>
-complete&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;---&nbsp;one&nbsp;loop&nbsp;of&nbsp;the&nbsp;progression&nbsp;(without&nbsp;repeating<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;startPitch)<br>
-nonLooping&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;---&nbsp;the&nbsp;non-looping&nbsp;part&nbsp;of&nbsp;the&nbsp;progression.&nbsp;If&nbsp;the<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;progression&nbsp;lacks&nbsp;it,&nbsp;None<br>
+complete&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;---&nbsp;one&nbsp;loop&nbsp;of&nbsp;the&nbsp;progression&nbsp;(without&nbsp;repeating<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;startPitch)<br>
+nonLooping&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;---&nbsp;the&nbsp;non-looping&nbsp;part&nbsp;of&nbsp;the&nbsp;progression.&nbsp;If&nbsp;the<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;progression&nbsp;lacks&nbsp;it,&nbsp;None<br>
 loopingStart&nbsp;&nbsp;&nbsp;&nbsp;---&nbsp;the&nbsp;looping&nbsp;section&nbsp;of&nbsp;the&nbsp;progression<br>
 &nbsp;<br>
-Available&nbsp;methods&nbsp;are:<br>
-<a href="#Progression-original">original</a>()&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;---&nbsp;returns&nbsp;complete<br>
-<a href="#Progression-retrograde">retrograde</a>()&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;---&nbsp;returns&nbsp;the&nbsp;retrograde&nbsp;of&nbsp;complete<br>
-<a href="#Progression-inverse">inverse</a>()&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;---&nbsp;returns&nbsp;the&nbsp;inverse&nbsp;of&nbsp;complete<br>
-<a href="#Progression-retrogradeInverse">retrogradeInverse</a>()&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;---&nbsp;returns&nbsp;the&nbsp;retrograde-inverse&nbsp;of&nbsp;complete<br>
-<a href="#Progression-transposition">transposition</a>()&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;---&nbsp;needs&nbsp;startPitch&nbsp;argument,&nbsp;and&nbsp;optionally<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;identitiy='original'.<br>&nbsp;</tt></td></tr>
+Useful&nbsp;inherited&nbsp;methods&nbsp;are:<br>
+<a href="#Progression-original">original</a>()&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;---&nbsp;returns&nbsp;complete<br>
+<a href="#Progression-retrograde">retrograde</a>()&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;---&nbsp;returns&nbsp;the&nbsp;retrograde&nbsp;of&nbsp;complete<br>
+<a href="#Progression-inverse">inverse</a>()&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;---&nbsp;returns&nbsp;the&nbsp;inverse&nbsp;of&nbsp;complete<br>
+<a href="#Progression-retrogradeInverse">retrogradeInverse</a>()&nbsp;---&nbsp;returns&nbsp;the&nbsp;retrograde-inverse&nbsp;of&nbsp;complete<br>
+<a href="#Progression-transposition">transposition</a>()&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;---&nbsp;needs&nbsp;startPitch&nbsp;argument,&nbsp;and&nbsp;optionally<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;identitiy='original'.&nbsp;Transposes&nbsp;to<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;startPitch.<br>&nbsp;</tt></td></tr>
 <tr><td>&nbsp;</td>
 <td width="100%"><dl><dt>Method resolution order:</dt>
 <dd><a href="moebiusLib.html#Progression">Progression</a></dd>
@@ -179,7 +198,7 @@ by&nbsp;integers:&nbsp;C&nbsp;=&nbsp;0,&nbsp;C#&nbsp;=&nbsp;1,&nbsp;D&nbsp;=&nbs
 super-class&nbsp;to&nbsp;make&nbsp;available&nbsp;the&nbsp;following&nbsp;methods&nbsp;for&nbsp;the<br>
 whole&nbsp;progression:&nbsp;<a href="#Progression-original">original</a>(),&nbsp;<a href="#Progression-retrograde">retrograde</a>(),&nbsp;<a href="#Progression-inverse">inverse</a>()&nbsp;and<br>
 <a href="#Progression-retrogradeInverse">retrogradeInverse</a>().<br>
-startPitch&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;---&gt;&nbsp;The&nbsp;first&nbsp;note&nbsp;of&nbsp;the&nbsp;progression<br>
+startPitch&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;---&gt;&nbsp;The&nbsp;first&nbsp;note&nbsp;of&nbsp;the&nbsp;progression<br>
 missingPitch&nbsp;&nbsp;&nbsp;&nbsp;---&gt;&nbsp;A&nbsp;missing&nbsp;pitch&nbsp;in&nbsp;the&nbsp;chromatic&nbsp;set</tt></dd></dl>
 
 <dl><dt><a name="Progression-determineNonLoopingNLoopingSections"><strong>determineNonLoopingNLoopingSections</strong></a>(self)</dt><dd><tt>Determine&nbsp;whether&nbsp;self.<strong>complete</strong>&nbsp;has&nbsp;a&nbsp;non-looping&nbsp;section.<br>
@@ -203,10 +222,10 @@ Methods inherited from <a href="utilities.html#Identities">utilities.Identities<
 intervals&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;---&gt;&nbsp;a&nbsp;list&nbsp;of&nbsp;intervals.<br>
 start&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;---&gt;&nbsp;the&nbsp;starting&nbsp;ponit&nbsp;of&nbsp;the&nbsp;returned&nbsp;series.<br>
 modulo&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;---&gt;&nbsp;optional&nbsp;arg.&nbsp;12&nbsp;when&nbsp;working&nbsp;TET<br>
-return&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--&gt;&gt;&nbsp;a&nbsp;list</tt></dd></dl>
+return&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--&gt;&gt;&nbsp;a&nbsp;list&nbsp;of&nbsp;points</tt></dd></dl>
 
 <dl><dt><a name="Progression-inverse"><strong>inverse</strong></a>(self)</dt><dd><tt>Returns&nbsp;the&nbsp;inverse&nbsp;series.&nbsp;No&nbsp;transposition&nbsp;takes&nbsp;place<br>
-(i.e.&nbsp;inverse[0]&nbsp;=&nbsp;original[0]).<br>
+(i.e.&nbsp;inverse[0]&nbsp;=&nbsp;original[-1]).<br>
 return&nbsp;&nbsp;--&gt;&gt;&nbsp;the&nbsp;inverse&nbsp;identity&nbsp;of&nbsp;self.<strong>originalSeries</strong></tt></dd></dl>
 
 <dl><dt><a name="Progression-original"><strong>original</strong></a>(self)</dt><dd><tt>Returns&nbsp;the&nbsp;original&nbsp;series.<br>
@@ -247,7 +266,8 @@ Data descriptors inherited from <a href="utilities.html#Identities">utilities.Id
 <font color="#ffffff" face="helvetica, arial"><big><strong>Data</strong></big></font></td></tr>
     
 <tr><td bgcolor="#55aa55"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
-<td width="100%"><strong>__author__</strong> = 'Ernesto Illescas-Pel<font color="#c040c0">\xc3\xa1</font>ez and Edgar Becerra-Santillan'<br>
+<td width="100%"><strong>__author__</strong> = 'Ernesto Illescas-Pelaez and Edgar Becerra-Santillan'<br>
+<strong>__date__</strong> = '20 February 2013'<br>
 <strong>__version__</strong> = 'Beta'</td></tr></table><p>
 <table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
 <tr bgcolor="#7799ee">
@@ -255,5 +275,5 @@ Data descriptors inherited from <a href="utilities.html#Identities">utilities.Id
 <font color="#ffffff" face="helvetica, arial"><big><strong>Author</strong></big></font></td></tr>
     
 <tr><td bgcolor="#7799ee"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
-<td width="100%">Ernesto&nbsp;Illescas-Peláez&nbsp;and&nbsp;Edgar&nbsp;Becerra-Santillan</td></tr></table>
+<td width="100%">Ernesto&nbsp;Illescas-Pelaez&nbsp;and&nbsp;Edgar&nbsp;Becerra-Santillan</td></tr></table>
 </body></html>

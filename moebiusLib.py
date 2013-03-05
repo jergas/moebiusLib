@@ -25,7 +25,7 @@ matrixes as conceived by composer Ernesto Illescas-Peláez in his
 Master's thesis \"An Organizing Tide of Chaos - Resonances of Chaos
 Theory in a Composer's Craftsmanship\".
 """
-__author__	=  'Ernesto Illescas-Peláez and Edgar Becerra-Santillan'
+__author__	=  'Ernesto Illescas-Pelaez and Edgar Becerra-Santillan'
 __date__	= '20 February 2013'
 __version__=  'Beta'
 
@@ -40,8 +40,8 @@ import utilities
 Identities = utilities.Identities
 
 class Progression(Identities):
-	""" Generates a Moebius progression and related attributes
-	__init__() Takes 2 integer argumenst, which are converted to 
+	""" Generates a Moebius progression and related attributes.
+	__init__() Takes 2 integer arguments, which are converted to 
 	their remainder modulo 12: startPitch and missingPitch. Contains
 	attributes and methods useful for working with the progression.
 	
@@ -49,19 +49,20 @@ class Progression(Identities):
 	chromaticSet    --- (0, 1, 2, ... 11)
 	pitches         --- deque object containing the chromatic set minus
                        missingPitch
-	complete		--- one loop of the progression (without repeating
-							startPitch)
-	nonLooping		--- the non-looping part of the progression. If the
-							progression lacks it, None
-	loopingStart	--- the looping section of the progression
+	complete        --- one loop of the progression (without repeating
+                       startPitch)
+	nonLooping      --- the non-looping part of the progression. If the
+                       progression lacks it, None
+	loopingStart    --- the looping section of the progression
 	
-	Available methods are:
-	original()			--- returns complete
-	retrograde()		--- returns the retrograde of complete
-	inverse()			--- returns the inverse of complete
-	retrogradeInverse()	--- returns the retrograde-inverse of complete
-	transposition()		--- needs startPitch argument, and optionally
-							identitiy=\'original\'.
+	Useful inherited methods are:
+	original()          --- returns complete
+	retrograde()        --- returns the retrograde of complete
+	inverse()           --- returns the inverse of complete
+	retrogradeInverse() --- returns the retrograde-inverse of complete
+	transposition()     --- needs startPitch argument, and optionally
+                           identitiy=\'original\'. Transposes to
+                           startPitch.
 	"""
 	
 	def __init__(self, startPitch, missingPitch):
@@ -71,8 +72,8 @@ class Progression(Identities):
 		super-class to make available the following methods for the
 		whole progression: original(), retrograde(), inverse() and
 		retrogradeInverse().
-		startPitch		---> The first note of the progression
-		missingPitch	---> A missing pitch in the chromatic set
+		startPitch      ---> The first note of the progression
+		missingPitch    ---> A missing pitch in the chromatic set
 		"""
 		# Test whether initialization data is valid. If not raise an error.
 		if isinstance(startPitch, int) and isinstance(missingPitch, int):
@@ -180,8 +181,26 @@ The progression's looping section is:
 
 class Matrix(Progression):
 	""" Constructs a transposition matrix with the original tone-row (or
-	 an identity) as the first row of the matrix, and its inverse as
-	 first note for the subsequent transpositions.
+	an identity) as the first row of the matrix, and its inverse as
+	first note for the subsequent transpositions. __init__() takes 2
+	mandatory integer arguments, which are converted to  their remainder
+	modulo 12: startPitch and missingPitch; and to optional ones
+	identity ('original', 'retrograde', 'inverse', 'retrogradeInverse')
+	and transposeTo.
+	
+	Available attributes are:
+	matrix    --- a matrix object with the 'identity' tone row as first
+                 row, and its inverse as the first column. e.g.:
+			[[ 1  2  4  8  5 10  9  7  3  6]
+			 [ 0  1  3  7  4  9  8  6  2  5]
+			 [10 11  1  5  2  7  6  4  0  3]
+			 [ 6  7  9  1 10  3  2  0  8 11]
+			 [ 9 10  0  4  1  6  5  3 11  2]
+			 [ 4  5  7 11  8  1  0 10  6  9]
+			 [ 5  6  8  0  9  2  1 11  7 10]
+			 [ 7  8 10  2 11  4  3  1  9  0]
+			 [11  0  2  6  3  8  7  5  1  4]
+			 [ 8  9 11  3  0  5  4  2 10  1]]
 	"""
 	
 	def __init__(self, startPitch, missingPitch, identity='original',
@@ -189,12 +208,12 @@ class Matrix(Progression):
 		""" Uses the Progression superclass to generate a moebius
 		tone-row and the optional argument to set the origin of the
 		Matrix. Constructs a transposition matrix.
-		startPitch		---> The first note of the progression
-		missingPitch	---> A missing pitch in the chromatic set
-		identity		---> Optionally use 'retrograde', 'inverse', or
-								'retrogradeInverse' to construct the
-								matrix
-		transposeTO		---> Optionally start row1 with this value
+		startPitch      ---> The first note of the progression
+		missingPitch    ---> A missing pitch in the chromatic set
+		identity        ---> Optionally use 'retrograde', 'inverse', or
+		                    'retrogradeInverse' to construct the
+		                    matrix
+		transposeTO     ---> Optionally start row1 with this value
 		"""
 		Progression.__init__(self, startPitch, missingPitch)
 		# Test to see if the identity attribute is valid. if so, define
