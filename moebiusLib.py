@@ -25,7 +25,8 @@ matrixes as conceived by composer Ernesto Illescas-Peláez in his
 Master's thesis \"An Organizing Tide of Chaos - Resonances of Chaos
 Theory in a Composer's Craftsmanship\".
 """
-__author__ =  'Ernesto Illescas-Peláez and Edgar Becerra-Santillan'
+__author__	=  'Ernesto Illescas-Peláez and Edgar Becerra-Santillan'
+__date__	= '20 February 2013'
 __version__=  'Beta'
 
 
