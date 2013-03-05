@@ -19,13 +19,14 @@
 # You should have received a copy of the GNU Affero General Public License
 #along with moebiusLib.  If not, see <http://www.gnu.org/licenses/>.
 
-## Contains classes that collect numeric utilities.
-
-#	Classes that generate "Moebius Progressions" and transposition
-# matrixes as conceived by composer Ernesto Illescas-Peláez in his
-# Master's thesis "An Organizing Tide of Chaos - Resonances of Chaos
-# Theory in a Composer's Craftsmanship".
-#
+"""
+Classes that generate \"Moebius Progressions\" and transposition
+matrixes as conceived by composer Ernesto Illescas-Peláez in his
+Master's thesis \"An Organizing Tide of Chaos - Resonances of Chaos
+Theory in a Composer's Craftsmanship\".
+"""
+__author__ =  'Ernesto Illescas-Peláez and Edgar Becerra-Santillan'
+__version__=  'Beta'
 
 
 # Import Python native modules.
@@ -44,9 +45,9 @@ class Progression(Identities):
 	attributes and methods useful for working with the progression.
 	
 	Available attributes are:
-	chromaticSet	--- (0, 1, 2, ... 11)
-	pitches			--- deque object containing the chromatic set minus
-							missingPitch
+	chromaticSet    --- (0, 1, 2, ... 11)
+	pitches         --- deque object containing the chromatic set minus
+                       missingPitch
 	complete		--- one loop of the progression (without repeating
 							startPitch)
 	nonLooping		--- the non-looping part of the progression. If the

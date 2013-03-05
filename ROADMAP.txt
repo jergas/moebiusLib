@@ -4,9 +4,8 @@ ROADMAP
 
 - Stage 1
 	- Write documentation
-		- README (ONGOING).
-		- This text (ONGOING elerno wonders if the roadmap is clear
-						enough?).
+		- README (DONE ).
+		- ROADMAP (DONE).
 		- License (DONE).
 		- Coding conventions (ONGOING).
 	- Code moebiusLib.Progression() basic methods and (generated) attributes.
@@ -38,14 +37,14 @@ ROADMAP
 			- Add keyword argument to __init__ so that the matrix is generated
 				from series identities. Originating Identities should also be
 				possible. (DONE)
-			- Add methods to identify symetry and inversion axises in the
-				Matrix.
 - Stage 3
-	- Review the code
+	- Review the code (MOSTLY DONE)
 		- Optimize if necessary.
 		- Polish docstrings and comments if necessary.
 	- Write any missing documentation.
 - Stage 4 (wishlist)
+	- Add methods to identify symetry and inversion axises in 
+				Matrix.matrix.
 	- Code moebiusLib.Progression() experimental methods (and attributes?).
 		- add optional arguments to makeProgression() or __init__ in order to
 			experiment with different modulos and/or constants in the iterated
