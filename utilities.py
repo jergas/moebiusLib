@@ -31,7 +31,7 @@ taken from cascaBell: https://github.com/elerno/cascaBell
 """
 __author__	=  'Ernesto Illescas-Pelaez'
 __date__	= '20 February 2013'
-__version__=  'Beta'
+__version__=  '0.3'
 
 
 # Import Python native modules.
