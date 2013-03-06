@@ -1,8 +1,9 @@
-moebiusLib
-==========
+moebiusLib-dev
+==============
 
-Moebius Matrix Library,
-an algorithmic composition library inspired on chaos theory and written in Python.
+Moebius Matrix Library, an algorithmic composition library inspired on chaos
+theory and written in Python. This is a development version. The latest stable
+version is 0.3: https://github.com/elerno/moebiusLib/tree/0.3
 
 
 ABOUT
