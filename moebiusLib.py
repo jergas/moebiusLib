@@ -27,7 +27,7 @@ Theory in a Composer's Craftsmanship\".
 """
 __author__	=  'Ernesto Illescas-Pelaez and Edgar Becerra-Santillan'
 __date__	= '20 February 2013'
-__version__=  'Beta'
+__version__=  'Dev'
 
 
 # Import Python native modules.
