@@ -1,5 +1,5 @@
-moebiusLib
-==========
+moebiusLib-0.3
+==============
 
 Moebius Matrix Library,
 an algorithmic composition library inspired on chaos theory and written in Python.
@@ -34,4 +34,5 @@ Some code has been recycled from <a href="https://github.com/elerno/cascaBell">c
 HOW TO
 ------
 
-TODO (will contain instructions on using the library. Does this make sense?)
+This library is intended to be imported as a Python module. See the
+documentation folder for includede Classes()

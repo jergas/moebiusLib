@@ -38,10 +38,10 @@ ROADMAP
 				from series identities. Originating Identities should also be
 				possible. (DONE)
 - Stage 3
-	- Review the code (MOSTLY DONE)
-		- Optimize if necessary.
-		- Polish docstrings and comments if necessary.
-	- Write any missing documentation.
+	- Review the code (DONE)
+		- Optimize if necessary. (DONE)
+		- Polish docstrings and comments if necessary. (DONE)
+	- Write any missing documentation. (DONE)
 - Stage 4 (wishlist)
 	- Add methods to identify symetry and inversion axises in 
 				Matrix.matrix.

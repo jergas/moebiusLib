@@ -1,8 +1,7 @@
 # -*- coding: UTF-8 -*-
 
 
-# Copyright Ernesto Illescas-Peláez 2006 and 2009-2013, Ernesto Illescas-Peláez
-# and Edgar Becerra-Santillan 2013 
+# Copyright Ernesto Illescas-Peláez 2006 and 2013
 
 # This file is part of moebiusLib.
 
@@ -25,14 +24,20 @@
 # matrixes as conceived by composer Ernesto Illescas-Peláez in his
 # Master's thesis "An Organizing Tide of Chaos - Resonances of Chaos
 # Theory in a Composer's Craftsmanship".
-#
+
+"""
+Utility classes for moebiusLib. Some of the code in this module was
+taken from cascaBell: https://github.com/elerno/cascaBell
+"""
+__author__	=  'Ernesto Illescas-Pelaez'
+__date__	= '20 February 2013'
+__version__=  '0.3'
 
 
 # Import Python native modules.
 class Identities(object):
-	""" Contains methods to generate and transpose series identites:
-	original(), retrograde(), inverse() retrogradInverse() and
-	transposition().
+	""" Contains methods to return series identites, and to transpose
+	them.
 	"""
 	def __init__(self, originalSeries):
 		""" Set originalSeries as the self.originalSeries attribute.
@@ -61,7 +66,7 @@ class Identities(object):
 		intervals	---> a list of intervals.
 		start		---> the starting ponit of the returned series.
 		modulo		---> optional arg. 12 when working TET
-		return		-->> a list
+		return		-->> a list of points
 		"""
 		series	= [start]
 		for x in intervals:
@@ -90,7 +95,7 @@ class Identities(object):
 	
 	def inverse(self):
 		""" Returns the inverse series. No transposition takes place
-		(i.e. inverse[0] = original[0]).
+		(i.e. inverse[0] = original[-1]).
 		return	-->> the inverse identity of self.originalSeries
 		"""
 		origin				= self.originalSeries[0]
